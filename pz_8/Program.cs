@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 namespace pz_8
 {
     class Program
@@ -16,14 +16,14 @@ namespace pz_8
             int sum = 0;
             for (int i = 0; i < arrayInt.Length; i++)
             {
-                if ( !calculate  && arrayInt[i] < 0) calculate = true;
+                if (!calculate && arrayInt[i] < 0) calculate = true;
                 else if (calculate)
                 {
                     sum += Math.Abs(arrayInt[i]);
                 }
             }
             Console.Write("Значения массива: ");
-            foreach ( int i in arrayInt)
+            foreach (int i in arrayInt)
             {
                 Console.Write($"{i}\t");
             }
