@@ -7,7 +7,7 @@ namespace pz_9
         static void Main(string[] args)
         {
             Random rand = new Random();
-            int size = rand.Next(10, 25);
+            int size = 5;
             int[,] arrayInt = new int[size , size];
             for (int i = 0; i < size ; i++)
             {
@@ -17,12 +17,15 @@ namespace pz_9
                 }
             }
             int count = 0;
-            for(int x = 0; x < size-1; x++)
+            for(int x = 0; x < size; x++)
             {
-                for(int y = x; y < size ; y++)//Значения главной диагонали не вкл.
+                for(int y = x; y < size ; y++)//Значения главной диагонали вкл.
                 {
-                    if(arrayInt[x , y] < 0)  count++;
-                   
+                    if(arrayInt[x , y] < 0)
+                    {
+                        count++;
+                        Console.WriteLine(arrayInt[x,y]+"\t");
+                    }
                 }
             }
             Console.WriteLine("Квадратная матрица");
