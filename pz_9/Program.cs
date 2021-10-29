@@ -17,16 +17,20 @@ namespace pz_9
                 }
             }
             int count = 0;
-            for(int i = 0 , j = 0; i < size; i++ , j++)
+            for(int x = 0; x < size-1; x++)
             {
-                if (arrayInt[i, j] < 0) count++;
+                for(int y = x; y < size ; y++)//Значения главной диагонали не вкл.
+                {
+                    if(arrayInt[x , y] < 0)  count++;
+                   
+                }
             }
             Console.WriteLine("Квадратная матрица");
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
-                    Console.Write(arrayInt[i, j]+ " ");
+                    Console.Write(arrayInt[j , i]+ "\t");
                 }
                 Console.WriteLine();
             }
