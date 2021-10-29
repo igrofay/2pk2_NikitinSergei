@@ -9,52 +9,52 @@ namespace pz_10
         {
             Random rd = new Random();
             //Пункт 1
-            char[][] arrayChars = new char[6][];
+            string[][] arrayChars = new string[6][];
             for (int i = 0; i < 6; i++)
             {
-                arrayChars[i] = new char[rd.Next(2, 10)];
+                arrayChars[i] = new string[rd.Next(2, 10)];
                 for (int y = 0; y < arrayChars[i].Length; y++)
                 {
-                    arrayChars[i][y] = (char)('A' + rd.Next(0, 30));
+                    arrayChars[i][y] = Word(rd);
                 }
             }
             //Пункт 2
             Console.WriteLine("Массив:");
-            foreach (char[] i in arrayChars)
+            foreach (string[] i in arrayChars)
             {
-                foreach (char y in i) Console.Write(y + " ");
+                foreach (string y in i) Console.Write(y + " ");
                 Console.WriteLine();
             }
             //Пункт 3
-            char[] values = new char[6];
+            string[] values = new string[6];
             int count = 0;
-            foreach (char[] i in arrayChars)
+            foreach (string[] i in arrayChars)
             {
                 values[count] = i[i.Length - 1];
                 count++;
             }
             Console.WriteLine("Последние элементы каждой строки :");
-            foreach (char i in values)
+            foreach (string i in values)
             {
                 Console.Write(i + " ");
             }
             Console.WriteLine();
             //Пункт 4 
             count = 0;
-            foreach (char[] i in arrayChars)
+            foreach (string[] i in arrayChars)
             {
                 values[count] = i.Max();
                 count++;
             }
             Console.WriteLine("Максимальные значения строк :");
-            foreach (char i in values)
+            foreach (string i in values)
             {
                 Console.Write(i + " ");
             }
             Console.WriteLine();
             //Пункт 5
             count = 0;
-            foreach (char[] i in arrayChars)
+            foreach (string[] i in arrayChars)
             {
                 int k = Array.IndexOf(i, values[count]);
                 i[k] = i[0];
@@ -62,11 +62,24 @@ namespace pz_10
                 count++;
             }
             Console.WriteLine("Новый массив:");
-            foreach (char[] i in arrayChars)
+            foreach (string[] i in arrayChars)
             {
-                foreach (char y in i) Console.Write(y + " ");
+                foreach (string y in i) Console.Write(y + " ");
                 Console.WriteLine();
             }
         }
+
+        private static string Word(Random rd)
+        {
+            char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string word = "";
+            for (int i = 1; i <= rd.Next(1, 10); i++)
+            {
+                char c = letters[rd.Next(0, letters.Length)];
+                word += c;
+            }
+            return word;
+        }
     }
+   
 }
