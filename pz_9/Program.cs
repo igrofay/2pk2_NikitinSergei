@@ -19,7 +19,7 @@ namespace pz_9
             int count = 0;
             for(int x = 0; x < size; x++)
             {
-                for(int y = x; y < size ; y++)//Значения главной диагонали вкл.
+                for(int y = x+1 ; y < size ; y++)//Значения главной диагонали не вкл.
                 {
                     if(arrayInt[x , y] < 0)
                     {
