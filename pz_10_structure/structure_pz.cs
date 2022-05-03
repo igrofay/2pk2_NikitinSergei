@@ -6,20 +6,21 @@ namespace Programm{
 			TRAIN[] RASP = new TRAIN[8];
 			for(int i = 0; i < RASP.Length ; i++){
 				Console.WriteLine("Ведите данные о поезде: ");
-				Console.WriteLine("Номер поезда: ");
+				Console.Write("Номер поезда: ");
 				int num = int.Parce(Console.ReadLine());
-				Console.WriteLine("Название пункта назначения поезда: ");
+				Console.Write("Название пункта назначения поезда: ");
 				string name = Console.ReadLine();
-				Console.WriteLine("Время отправления поезда( формат - hh:mm ): ");
+				Console.Write("Время отправления поезда: ");
 				string time = Console.ReadLine();
 				RASP[i] = new TRAIN(num,name,time);
 			}
 			sortInd(ref RASP);
-			Console.WriteLine("Какой поезд вы хотите найти?\nНомер поезда: ");
+			Console.Write("Какой поезд вы хотите найти?\nНомер поезда: ");
 			int num = int.Parce(Console.ReadLine());
 			for(int i = 0; i < RASP.Length ; i++){
 				if(RASP[i].NUMR == num){
-					Console.WriteLine($"Поезд найден: {RASP[i].ToString()}");
+					Console.WriteLine($"Поезд найден: {RASP[i]}");
+					break;
 				}else if (i == RASP.Length-1){
 					Console.WriteLine("Незарегистрированный поезд!!!");
 				}

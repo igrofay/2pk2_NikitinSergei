@@ -7,79 +7,68 @@ namespace pz_10
     {
         static void Main(string[] args)
         {
-            Random rd = new Random();
-            //Пункт 1
-            string[][] arrayChars = new string[6][];
-            for (int i = 0; i < 6; i++)
+            Random random = new Random();//Создаём рандом для создания значений 
+            Console.WriteLine("Задание 1");
+            int[][] arrayInt = new int[5][];//Создаём массив
+            //Заполняем массив
+            for (int i = 0; i < 5; i++)
             {
-                arrayChars[i] = new string[rd.Next(2, 10)];
-                for (int y = 0; y < arrayChars[i].Length; y++)
+                arrayInt[i] = new int[random.Next(3, 15)];//Создаём ступень массива
+                for (int y = 0; y < arrayInt[i].Length; y++)
                 {
-                    arrayChars[i][y] = Word(rd);
+                    arrayInt[i][y] = random.Next(-50, 50);//Заполняем
                 }
             }
-            //Пункт 2
+            Console.WriteLine("Задание 2");
+            //Выводим массив
             Console.WriteLine("Массив:");
-            foreach (string[] i in arrayChars)
+            foreach (int[] i in arrayInt)
             {
-                foreach (string y in i) Console.Write(y + " ");
-                Console.WriteLine();
+                foreach (int y in i) Console.Write(y + "  ");//Выводим части ступени
+                Console.WriteLine();//"Переходим" на другую ступень
             }
-            //Пункт 3
-            string[] values = new string[6];
-            int count = 0;
-            foreach (string[] i in arrayChars)
+            Console.WriteLine("Задание 3");
+            //Находим последние значения
+            int[] data = new int[5];
+            for (int i = 0; i < 5; i++)
             {
-                values[count] = i[i.Length - 1];
-                count++;
+                data[i] = arrayInt[i][arrayInt[i].Length - 1];//Заполняем массив значениями, которые находятся в конце ступеней
             }
-            Console.WriteLine("Последние элементы каждой строки :");
-            foreach (string i in values)
+            //Выводим массив
+            Console.WriteLine("Последние значения:");
+            foreach (int i in data)
             {
-                Console.Write(i + " ");
-            }
-            Console.WriteLine();
-            //Пункт 4 
-            count = 0;
-            foreach (string[] i in arrayChars)
-            {
-                values[count] = i.Max();
-                count++;
-            }
-            Console.WriteLine("Максимальные значения строк :");
-            foreach (string i in values)
-            {
-                Console.Write(i + " ");
-            }
-            Console.WriteLine();
-            //Пункт 5
-            count = 0;
-            foreach (string[] i in arrayChars)
-            {
-                int k = Array.IndexOf(i, values[count]);
-                i[k] = i[0];
-                i[0] = values[count];
-                count++;
-            }
-            Console.WriteLine("Новый массив:");
-            foreach (string[] i in arrayChars)
-            {
-                foreach (string y in i) Console.Write(y + " ");
-                Console.WriteLine();
-            }
-        }
+                Console.Write(i + "\t");//Выводим конечные значения ступений
 
-        private static string Word(Random rd)
-        {
-            char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            string word = "";
-            for (int i = 1; i <= rd.Next(1, 10); i++)
-            {
-                char c = letters[rd.Next(0, letters.Length)];
-                word += c;
             }
-            return word;
+            Console.WriteLine();//Делаем пробел
+            Console.WriteLine("Задание 4");
+            //Находим максимальные значения
+            for (int i = 0; i < 5; i++)
+            {
+                data[i] = arrayInt[i].Max();//Находим максимальное значение в ступени и заполняем массив
+            }
+            //Выводим значения
+            Console.WriteLine("Максимальные значения:");
+            foreach (int i in data)
+            {
+                Console.Write(i + "\t");//Выводиммаксимальные значения ступений
+            }
+            Console.WriteLine();
+            Console.WriteLine("Задание 5");
+            //Меняем местами значения
+            for (int i = 0; i < 5; i++)
+            {
+                int position = Array.IndexOf(arrayInt[i], data[i]);//Находим позицию, где находится мак. значение
+                arrayInt[i][position] = arrayInt[i][0];//Меняем мак. значение на начальное 
+                arrayInt[i][0] = data[i];//Меняем начальное знач. на мак.
+            }
+            Console.WriteLine("Массив:");
+            foreach (int[] i in arrayInt)
+            {
+                foreach (int y in i) Console.Write(y + "  ");//Выводим части ступени
+                Console.WriteLine();//"Переходим" на другую ступень
+            }
         }
     }
-   
 }
